@@ -15,9 +15,10 @@ const queryClient = new QueryClient({
   },
 })
 
-export default function App({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   axios.defaults.withCredentials = true
   useEffect(() => {
+    console.log('useEffect');
     const getCsrfToken = async () => {
       const { data } = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/auth/csrf`
@@ -26,14 +27,12 @@ export default function App({ Component, pageProps }: AppProps) {
     }
     getCsrfToken()
   }, [])
-
   return (
     <QueryClientProvider client={queryClient}>
       <MantineProvider
         withGlobalStyles
         withNormalizeCSS
         theme={{
-          /** Put your mantine theme override here */
           colorScheme: 'dark',
           fontFamily: 'Verdana, sans-serif',
         }}
@@ -44,3 +43,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </QueryClientProvider>
   )
 }
+
+export default MyApp
