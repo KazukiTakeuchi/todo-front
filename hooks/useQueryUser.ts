@@ -1,7 +1,7 @@
-import { User } from '@prisma/client'
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
 import { useRouter } from 'next/router'
+import axios from 'axios'
+import { useQuery } from '@tanstack/react-query'
+import { User } from '@prisma/client'
 
 export const useQueryUser = () => {
   const router = useRouter()
@@ -11,14 +11,12 @@ export const useQueryUser = () => {
     )
     return data
   }
-
   return useQuery<Omit<User, 'hashedPassword'>, Error>({
     queryKey: ['user'],
     queryFn: getUser,
     onError: (err: any) => {
-      if (err.response?.status === 401 || err.response?.status === 403) {
+      if (err.response.status === 401 || err.response.status === 403)
         router.push('/')
-      }
     },
   })
 }
