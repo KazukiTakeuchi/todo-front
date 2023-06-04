@@ -5,8 +5,8 @@ import { LogoutIcon } from '@heroicons/react/solid'
 import { Layout } from '../components/Layout'
 import { UserInfo } from '../components/UserInfo'
 import { useQueryClient } from '@tanstack/react-query'
-// import { TaskForm } from '../components/TaskForm'
-// import { TaskList } from '../components/TaskList'
+import { TaskForm } from '../components/TaskForm'
+import { TaskList } from '../components/TaskList'
 
 const Dashboard: NextPage = () => {
   const router = useRouter()
@@ -24,8 +24,8 @@ const Dashboard: NextPage = () => {
         onClick={logout}
       />
       <UserInfo />
-      {/* <TaskForm />
-      <TaskList /> */}
+      <TaskForm />
+      <TaskList />
     </Layout>
   )
 }
